@@ -13,6 +13,10 @@ var _svg = require('./svg.js');
 
 var _svg2 = _interopRequireDefault(_svg);
 
+var _svgText = require('./svg-text.js');
+
+var _svgText2 = _interopRequireDefault(_svgText);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function getRendererClass(name) {
@@ -21,6 +25,8 @@ function getRendererClass(name) {
 			return _canvas2.default;
 		case "svg":
 			return _svg2.default;
+		case "svg-text":
+			return _svgText2.default;
 		default:
 			throw new Error("Invalid rederer");
 	}

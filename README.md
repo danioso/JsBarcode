@@ -167,6 +167,28 @@ JsBarcode(canvas, "Hello");
 // See https://github.com/Automattic/node-canvas for more information
 ````
 
+#### Use SVG string (browser and Node.js):
+```` javascript
+var JsBarcode = require('jsbarcode');
+
+// Make a fake and simple SVG object
+var svg = {
+  data:'',
+  xmlbase: true, 
+  hasAttribute: function(){return false}, 
+  getAttribute: function(){return false}
+}
+
+var options = {
+  lineColor: '#333333'
+}
+
+JsBarcode(svg, "Hello", options);
+
+// Print svg string
+console.log(svg.data)
+````
+
 
 
 Options:

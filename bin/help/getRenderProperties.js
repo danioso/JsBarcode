@@ -50,23 +50,31 @@ function getRenderProperties(element) {
 						renderer: (0, _renderers.getRendererClass)("svg")
 					};
 				}
-				// If canvas (in browser)
-				else if (typeof HTMLCanvasElement !== 'undefined' && element instanceof HTMLCanvasElement) {
+				// If SVG (text output - browser and node)
+				else if (element.xmlbase) {
 						return {
 							element: element,
 							options: (0, _getOptionsFromElement2.default)(element),
-							renderer: (0, _renderers.getRendererClass)("canvas")
+							renderer: (0, _renderers.getRendererClass)("svg-text")
 						};
 					}
-					// If canvas (in node)
-					else if (element.getContext) {
+					// If canvas (in browser)
+					else if (typeof HTMLCanvasElement !== 'undefined' && element instanceof HTMLCanvasElement) {
 							return {
 								element: element,
+								options: (0, _getOptionsFromElement2.default)(element),
 								renderer: (0, _renderers.getRendererClass)("canvas")
 							};
-						} else {
-							throw new _exceptions.InvalidElementException();
 						}
+						// If canvas (in node)
+						else if (element.getContext) {
+								return {
+									element: element,
+									renderer: (0, _renderers.getRendererClass)("canvas")
+								};
+							} else {
+								throw new _exceptions.InvalidElementException();
+							}
 } /* global HTMLImageElement */
 /* global HTMLCanvasElement */
 /* global SVGElement */

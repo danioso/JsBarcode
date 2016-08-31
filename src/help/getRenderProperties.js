@@ -43,6 +43,14 @@ function getRenderProperties(element){
 			renderer: getRendererClass("svg")
 		};
 	}
+	// If SVG (text output - browser and node)
+	else if(element.xmlbase){
+		return {
+			element: element,
+			options: getOptionsFromElement(element),
+			renderer: getRendererClass("svg-text")
+		};
+	}
 	// If canvas (in browser)
 	else if(typeof HTMLCanvasElement !== 'undefined' && element instanceof HTMLCanvasElement){
 		return {
